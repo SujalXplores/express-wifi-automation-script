@@ -2,28 +2,31 @@ const { By, Key, Builder } = require('selenium-webdriver');
 require('chromedriver');
 
 async function example() {
-  // var searchString = 'Automation testing with Selenium';
-
   //To wait for browser to build and launch properly
   const driver = await new Builder().forBrowser('chrome').build();
 
-  //To fetch http://google.com from the browser with our code.
+  //To fetch from the browser with our code.
   await driver.get(
     'https://tikona-standalone-ccpl-xwf-internet-org.tikona.in.expresswifi.com/customer/app'
   );
 
-  //To send a search query by passing the value in searchString.
-  // console.log(await driver.findElement(By.js()));
+  await driver.manage().window().maximize();
 
-  await driver.sleep(7000);
+  await driver.sleep(3000);
 
   await driver
     .findElement(By.css('button.ButtonMedium.BlockButton.PrimaryButton'))
-    .click(); // .sendKeys(searchString, Key.RETURN);
+    .click();
 
   //Verify the page title and print it
   const title = await driver.getTitle();
-  console.log('Title is:', title);
+  const url = await driver.getCurrentUrl();
+
+  console.log('----------------------------------------------------');
+  console.log('App name:', title);
+  console.log('URL:', url);
+  console.log('Data successfully credited to your account.');
+  console.log('----------------------------------------------------');
 
   //It is always a safe practice to quit the browser after execution
   await driver.sleep(40000);
