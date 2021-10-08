@@ -34,4 +34,4 @@ async function example() {
   await driver.quit();
 }
 
-example();
+Promise.all([example(), example(), example(), example()]);
