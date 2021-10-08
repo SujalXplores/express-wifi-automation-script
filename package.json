@@ -1,0 +1,21 @@
+{
+  "name": "node-selenium",
+  "version": "1.0.0",
+  "description": "Simple automation script with node.js",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [
+    "node.js",
+    "node-selenium",
+    "webdriver"
+  ],
+  "author": "Sujal Shah",
+  "license": "ISC",
+  "dependencies": {
+    "chromedriver": "^94.0.0",
+    "geckodriver": "^2.0.4",
+    "selenium-webdriver": "^4.0.0-rc-2"
+  }
+}
