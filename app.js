@@ -1,37 +1,45 @@
-const { By, Key, Builder } = require('selenium-webdriver');
+const { By, Builder, until } = require('selenium-webdriver');
+const { URL_HOME, WATCH_AD_BUTTON_SELECTOR } = require('./constants');
 require('chromedriver');
 
-async function example() {
+async function exWifi() {
   //To wait for browser to build and launch properly
   const driver = await new Builder().forBrowser('chrome').build();
+  try {
+    // Enters the given URL
+    await driver.get(URL_HOME);
 
-  //To fetch from the browser with our code.
-  await driver.get(
-    'https://tikona-standalone-ccpl-xwf-internet-org.tikona.in.expresswifi.com/customer/app'
-  );
+    // Maximize window and wait for button to load
+    // TODO: Find a way to wait until the button loads properly in the screen.
+    await driver.manage().window().maximize();
+    await driver.sleep(4000);
 
-  await driver.manage().window().maximize();
+    // Find and click on the button by cssSelector
+    await driver.findElement(By.css(WATCH_AD_BUTTON_SELECTOR)).click();
 
-  await driver.sleep(3000);
+    // Waiting for ads to finish
+    await driver.sleep(2000);
+    await driver.wait(until.urlIs(URL_HOME));
+    await driver.sleep(2000);
 
-  await driver
-    .findElement(By.css('button.ButtonMedium.BlockButton.PrimaryButton'))
-    .click();
+    //Verify the page title and print it
+    const title = await driver.getTitle();
+    const url = await driver.getCurrentUrl();
 
-  //Verify the page title and print it
-  const title = await driver.getTitle();
-  const url = await driver.getCurrentUrl();
+    console.log('----------------------------------------------------');
+    console.log('📝 App name:', title);
+    console.log('🚨 URL:', url);
+    console.log('✅ Data successfully credited to your account.');
+    console.log('----------------------------------------------------');
 
-  console.log('----------------------------------------------------');
-  console.log('App name:', title);
-  console.log('URL:', url);
-  console.log('Data successfully credited to your account.');
-  console.log('----------------------------------------------------');
-
-  //It is always a safe practice to quit the browser after execution
-  await driver.sleep(40000);
-
-  await driver.quit();
+    //It is always a safe practice to quit the browser after execution
+    await driver.close();
+    console.log('Window closed!');
+  } catch (e) {
+    console.log('🥅 Error Occurred!!!', e.message);
+    await driver.close();
+    return;
+  }
 }
 
-Promise.all([example(), example(), example(), example()]);
+Promise.all([exWifi(), exWifi(), exWifi(), exWifi()]);
