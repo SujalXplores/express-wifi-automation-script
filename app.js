@@ -1,11 +1,12 @@
-const { By, Builder, until } = require('selenium-webdriver');
 const { URL_HOME, WATCH_AD_BUTTON_SELECTOR } = require('./constants');
+
+const { By, Builder, until } = require('selenium-webdriver');
 require('chromedriver');
 
 (() => {
   'use strict';
 
-  async function exWifi() {
+  const exWifi = async () => {
     //To wait for browser to build and launch properly
     const driver = await new Builder().forBrowser('chrome').build();
     try {
@@ -39,11 +40,11 @@ require('chromedriver');
       await driver.close();
       console.log('Window closed!');
     } catch (e) {
-      console.log('🥅 Error Occurred!!!', e.message);
+      console.log('🥅 Error:', e.message);
       await driver.close();
       return;
     }
-  }
+  };
 
   Promise.all([exWifi(), exWifi(), exWifi(), exWifi()]);
 })();
