@@ -4,14 +4,15 @@ To start `npm start`
 
 ### Pre-requisites
 
-`Login to Express wifi app first before executing the script.`
+```
+1. Node.js installed.
+2. Express wi-fi by Facebook coverage in your local area.
+2. Login to Express wifi app first before executing the script.
+```
 
 ### Node.js version
 
-```bash
-$ node -v
-v16.10.0
-```
+`v16.10.0`
 
 ### Purpose of this script?
 
@@ -21,7 +22,7 @@ v16.10.0
 
 ### What this script do?
 
-1. It opens the new chrome window
+1. It opens the new 4 chrome windows parallel
 2. Enters the URL
 3. Wait for page to load
 4. Then it finds the button which shows the advertise and clicks it.
@@ -30,6 +31,4 @@ v16.10.0
 
 ### Things to improve
 
-1. In Parallel execution of script sometimes browser window shall not quit.
-2. Quit the window after all promise fulfilled.
-3. Wait for the exact amount of time by detecting video length rather than static time.
+1. Find a way to wait until the button loads properly in the DOM.
