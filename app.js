@@ -16,7 +16,7 @@ require('chromedriver');
       // Maximize window and wait for button to load
       // TODO: Find a way to wait until the button loads properly in the DOM.
       await driver.manage().window().maximize();
-      await driver.sleep(4000);
+      await driver.sleep(6000);
 
       // Find and click on the button by cssSelector
       await driver.findElement(By.css(WATCH_AD_BUTTON_SELECTOR)).click();
