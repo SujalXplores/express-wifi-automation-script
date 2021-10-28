@@ -5,7 +5,6 @@ require('chromedriver');
 
 (() => {
   'use strict';
-
   const exWifi = async () => {
     //To wait for browser to build and launch properly
     const driver = await new Builder().forBrowser('chrome').build();
@@ -13,13 +12,11 @@ require('chromedriver');
       // Enters the given URL
       await driver.get(URL_HOME);
 
-      // Maximize window and wait for button to load
-      // TODO: Find a way to wait until the button loads properly in the DOM.
+      // Maximize window and wait for button to load then click it
       await driver.manage().window().maximize();
-      await driver.sleep(6000);
-
-      // Find and click on the button by cssSelector
-      await driver.findElement(By.css(WATCH_AD_BUTTON_SELECTOR)).click();
+      await driver
+        .wait(until.elementLocated(By.css(WATCH_AD_BUTTON_SELECTOR)), 10000)
+        .click();
 
       // Waiting for ads to finish
       await driver.sleep(2000);
@@ -30,15 +27,14 @@ require('chromedriver');
       const title = await driver.getTitle();
       const url = await driver.getCurrentUrl();
 
-      console.log('----------------------------------------------------');
+      console.log('Time:', new Date().toLocaleString());
       console.log('📝 App name:', title);
       console.log('🚨 URL:', url);
       console.log('✅ Data successfully credited to your account.');
-      console.log('----------------------------------------------------');
+      console.log('----------------------------------');
 
       //It is always a safe practice to quit the browser after execution
       await driver.close();
-      console.log('Window closed!');
     } catch (e) {
       console.log('🥅 Error:', e.message);
       await driver.close();
@@ -46,5 +42,16 @@ require('chromedriver');
     }
   };
 
-  Promise.all([exWifi(), exWifi(), exWifi(), exWifi()]);
+  Promise.all([
+    exWifi(),
+    exWifi(),
+    exWifi(),
+    exWifi(),
+    exWifi(),
+    exWifi(),
+    exWifi(),
+    exWifi(),
+  ]).then(() => {
+    console.log('🚀 All done!');
+  });
 })();
