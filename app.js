@@ -1,4 +1,4 @@
-const { URL_HOME, WATCH_AD_BUTTON_SELECTOR } = require('./constants');
+const { URL_HOME } = require('./constants');
 
 const { By, Builder, until } = require('selenium-webdriver');
 require('chromedriver');
@@ -11,18 +11,9 @@ require('chromedriver');
     try {
       // Enters the given URL
       await driver.get(URL_HOME);
-
-      // Maximize window and wait for button to load then click it
-      await driver.manage().window().maximize();
-      await driver
-        .wait(until.elementLocated(By.css(WATCH_AD_BUTTON_SELECTOR)), 10000)
-        .click();
-
-      // Waiting for ads to finish
-      await driver.sleep(2000);
+      await driver.get(URL_HOME + '/ads');
       await driver.wait(until.urlIs(URL_HOME));
       await driver.sleep(2000);
-
       //Verify the page title and print it
       const title = await driver.getTitle();
       const url = await driver.getCurrentUrl();
