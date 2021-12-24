@@ -30,16 +30,16 @@ To start `npm start`
 ### Purpose of this script?
 
 > Express wi-fi gives 1GB data pack by watching ads of 30-35 seconds.
-> So, I have to watch 35second ad and after watching that ad, I got only 100mb.
-> I just automate this task using the power of `javascript` & `selenium`
+> So, I have to watch 35second ad and after watching that ad, I got only 1GB.
+> I just automate this task using the power of `javascript` & `selenium` and now I got 9GB in single shot.
 
 ### What this script do?
 
-1. It opens the new 4 chrome windows parallel
-2. Enters the URL
+1. It opens the new 9 chrome windows parallely.
+2. Loads the ad URL
 3. Waits for the page to load
 4. Wait till advertisement video finish
-5. Exit the browser
+5. Exit the browser after pack is credited.
 
 ### Things to improve
 
