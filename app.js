@@ -1,6 +1,6 @@
 const { URL_HOME } = require('./constants');
 
-const { By, Builder, until } = require('selenium-webdriver');
+const { Builder, until } = require('selenium-webdriver');
 require('chromedriver');
 
 (() => {
